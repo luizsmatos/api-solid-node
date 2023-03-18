@@ -1,4 +1,3 @@
-import { MaxDistanceError } from './erros/max-distance-error'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { InMemoryCheckInsRepository } from '@/repositories/check-ins/in-memory/in-memory-check-ins-repository'
@@ -6,6 +5,7 @@ import { InMemoryGymsRepository } from '@/repositories/gyms/in-memory/in-memory-
 
 import { CheckInUseCase } from './check-in-usecase'
 import { MaxNumberOfCheckInsError } from './erros/max-number-of-check-ins-error'
+import { MaxDistanceError } from './erros/max-distance-error'
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
