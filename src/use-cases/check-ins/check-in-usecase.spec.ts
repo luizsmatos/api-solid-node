@@ -21,8 +21,8 @@ describe('Check-in UseCase', () => {
       title: 'JavaScript Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(-19.9526508),
+      longitude: new Decimal(-44.1801858),
     })
 
     vi.useFakeTimers()
@@ -36,8 +36,8 @@ describe('Check-in UseCase', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9526508,
+      userLongitude: -44.1801858,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -52,16 +52,16 @@ describe('Check-in UseCase', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9526508,
+      userLongitude: -44.1801858,
     })
 
     await expect(() =>
       sut.execute({
         gymId: 'gym-01',
         userId: 'user-01',
-        userLatitude: 0,
-        userLongitude: 0,
+        userLatitude: -19.9526508,
+        userLongitude: -44.1801858,
       }),
     ).rejects.toBeInstanceOf(Error)
   })
@@ -72,8 +72,8 @@ describe('Check-in UseCase', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9526508,
+      userLongitude: -44.1801858,
     })
 
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
@@ -81,10 +81,21 @@ describe('Check-in UseCase', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -19.9526508,
+      userLongitude: -44.1801858,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to check in on distant gym', async () => {
+    await expect(() =>
+      sut.execute({
+        gymId: 'gym-01',
+        userId: 'user-01',
+        userLatitude: -19.949112,
+        userLongitude: -44.178002,
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
