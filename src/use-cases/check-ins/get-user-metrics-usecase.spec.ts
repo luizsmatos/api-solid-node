@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { InMemoryCheckInsRepository } from '@/repositories/check-ins/in-memory/in-memory-check-ins-repository'
+import { InMemoryCheckInsRepository } from 'in-memory/in-memory-check-ins-repository'
 
 import { GetUserMetricsUseCase } from './get-user-metrics-usecase'
 
